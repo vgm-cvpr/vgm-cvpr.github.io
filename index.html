@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visual Generative Modeling: What’s After Diffusion? | CVPR 2025 Workshop</title>
+  <style>
+    /* Base styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 2em;
+    }
+    /* Header and Navigation */
+    header {
+      position: relative; /* Needed to position the pseudo-element */
+      background: url('background.jpg') no-repeat center center/cover;
+      min-height: 500px;  /* Example header height */
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    header h1 {
+      font-size: 3rem; /* Adjust this value as needed */
+    }
+
+    /* The overlay */
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5); 
+      /* Adjust the last value for desired alpha 
+         e.g., 0.3 => 30% opacity overlay */
+      z-index: 0; /* Place the overlay behind the content */
+    }
+
+    /* Ensure your content is above the overlay */
+    header .container {
+      position: relative;
+      z-index: 1;
+    }
+    nav {
+      background: #999;
+      padding: 1em 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav li {
+      font-size: 1.2em;
+      margin: 0 3em;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    /* Hero Section */
+    .hero {
+      background: url('hero-image.jpg') no-repeat center center/cover;
+      color: #fff;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 2em;
+      margin: 0;
+    }
+    /* Section Styles */
+    .section {
+      padding: 2em 0;
+      background: #fff;
+      margin: 1em 0;
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    /* Speakers Grid */
+    .speakers {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px; /* Adjust spacing as needed */
+      justify-items: center;
+    }
+    .organizers {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 20px; /* Adjust spacing as needed */
+      justify-items: center;
+    }
+    .speaker-card {
+      background: #f9f9f9;
+      padding: 1em;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    .instructorphoto img {
+      width: 150px;
+      height: 150px; /* Ensure the height matches the width */
+      border-radius: 50%; /* Makes the image circular */
+      object-fit: cover; /* Ensures the image covers the entire area without distortion */
+      margin-bottom: 10px;
+    }
+    .instructor {
+      display: inline-block;
+      width: 150px;
+      text-align: center;
+/*      margin-right: 20px;*/
+    }
+    .speaker-card h3 {
+      margin-top: 0;
+    }
+    .speaker-card a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    /* Footer */
+    .footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1em 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>Visual Generative Modeling: What’s After Diffusion?</h1>
+      <h2>CVPR 2025 Workshop</h2>
+    </div>
+  </header>
+  
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#speakers">Speakers</a></li>
+        <li><a href="#organizers">Organizers</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About VGM at CVPR 2025</h2>
+      <p>
+        In recent years, diffusion models have rapidly overtaken previous methods to become the dominant approach in visual generative modeling, with widespread applications in generating images, videos, 3D objects, and more. However, these models also come with notable limitations, such as slow generation speeds, limited human intervention during the generation process, and challenges in modeling complex distributions like long videos. 
+      </p>
+      <p>
+        This year, our Visual Generative Modeling workshop at CVPR aims to explore what lies beyond diffusion models in visual generative modeling.
+        We will discuss novel insights, alternative approaches, and new possibilities in modeling and generating visual data. Join us for a full-day event featuring keynote talks from top universities and industrial labs -- all designed to ignite innovative ideas and novel research in visual generative modeling.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Program Section -->
+<!-- Schedule Section -->
+<section id="schedule" class="section">
+  <div class="container">
+    <h2>Schedule</h2>
+    <ul class="schedule">
+      <li>
+        <div class="time">9:00 - 9:15</div>
+        <div class="details"><strong>Welcome/Opening Remarks.</strong></div>
+      </li>
+      <li>
+        <div class="time">9:15 - 12:00</div>
+        <div class="details">
+          <strong>Morning keynote talks.</strong>
+        </div>
+      </li>
+      <li>
+        <div class="time">12:00 - 13:30</div>
+        <div class="details">
+          <strong>Lunch break.</strong>
+        </div>
+      </li>
+      <li>
+        <div class="time">13:30 - 17:30</div>
+        <div class="details"><strong>Afternonon Keynote Talks.</strong></div>
+      </li>
+    </ul>
+      <p>Detailed schedules will be updated later.</p>
+  </div>
+</section>
+
+  
+  <!-- Speakers Section -->
+  <section id="speakers" class="section">
+  <div class="container">
+    <h2>Speakers</h2>
+    <div class="speakers">
+      <!-- Speaker Card 1 -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://www.cs.cmu.edu/~junyanz/imgs/portrait3_lr.jpg" alt="Jun-Yan Zhu">
+        </div>
+        <div><a href="https://www.cs.cmu.edu/~junyanz/">Jun-Yan Zhu</a></div>
+        <div>CMU</div> <br>
+      </div>
+      <!-- Speaker Card 2 -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://jiajunwu.com/images/Jiajun_Wu.jpg" alt="Jiajun Wu">
+        </div>
+        <div><a href="https://jiajunwu.com">Jiajun Wu</a></div>
+        <div>Stanford University</div> <br>
+      </div>
+      <!-- Speaker Card 3: Kaiming He -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://people.csail.mit.edu/kaiming/img/kmh2024fall.jpg" alt="Kaiming He">
+        </div>
+        <div><a href="https://people.csail.mit.edu/kaiming/">Kaiming He</a></div>
+        <div>MIT</div> <br>
+      </div>
+      <!-- Speaker Card 4: Phillip Isola -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="http://web.mit.edu/phillipi/www/images/photo_of_me_korea.jpeg" alt="Phillip Isola">
+        </div>
+        <div><a href="https://web.mit.edu/phillipi/">Phillip Isola</a></div>
+        <div>MIT</div> <br>
+      </div>
+      <!-- Speaker Card 5: Bill Freeman -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://billf.mit.edu/files/2014/04/WilliamFreeman_332x332.jpg" alt="Bill Freeman">
+        </div>
+        <div><a href="https://billf.mit.edu/">Bill Freeman</a></div>
+        <div>MIT</div> <br>
+      </div>
+      <!-- Speaker Card 6: Varun Jampani -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://varunjampani.github.io/images/profile_pic.jpeg" alt="Varun Jampani">
+        </div>
+        <div><a href="https://varunjampani.github.io/">Varun Jampani</a></div>
+        <div>Stability AI</div> <br>
+      </div>
+      <!-- Speaker Card 7: Robin Rombach -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=ygdQhrIAAAAJ&citpid=1" alt="Robin Rombach">
+        </div>
+        <div><a href="https://scholar.google.com/citations?user=ygdQhrIAAAAJ&hl=en/">Robin Rombach</a></div>
+        <div>Black Forest Labs</div> <br>
+      </div>
+      <!-- Speaker Card 8: Arash Vahdat -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="http://latentspace.cc/wp-content/uploads/2019/03/IMG_0230-10.jpg" alt="Arash Vahdat">
+        </div>
+        <div><a href="http://latentspace.cc/">Arash Vahdat</a></div>
+        <div>NVIDIA</div> <br>
+      </div>
+      <!-- Speaker Card 9: Ricky T. Q. Chen -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://rtqichen.github.io/headshot.jpg" alt="Ricky T. Q. Chen">
+        </div>
+        <div><a href="https://rtqichen.github.io/">Ricky T. Q. Chen</a></div>
+        <div>FAIR</div> <br>
+      </div>
+      <!-- Speaker Card 10: Liang-Chieh Chen -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="http://liangchiehchen.com/fig/jay2_1.jpg" alt="Liang-Chieh Chen">
+        </div>
+        <div><a href="http://liangchiehchen.com/">Liang-Chieh Chen</a></div>
+        <div>TikTok</div> <br>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+  <!-- Organizers Section -->
+  <section id="organizers" class="section">
+    <div class="container">
+      <h2>Organizers</h2>
+      <div class="organizers">
+      <!-- Organizer Card 1 -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://www.tianhongli.me/images/avatar.jpg" alt="Tianhong Li">
+        </div>
+        <div>
+          <a href="https://www.tianhongli.me/">Tianhong Li</a>
+        </div>
+        <div>MIT</div> <br>
+      </div>
+
+      <!-- Organizer Card 2 -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://yilun-xu.com/assets/img/aaron_sq.png" alt="Yilun Xu">
+        </div>
+        <div>
+          <a href="https://yilun-xu.com/">Yilun Xu</a>
+        </div>
+        <div>NVIDIA</div> <br>
+      </div>
+
+      <!-- Organizer Card 3 -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://tianyuanzhang.com/images/selffile_ny.jpg" alt="Tianyuan Zhang">
+        </div>
+        <div>
+          <a href="https://tianyuanzhang.com/">Tianyuan Zhang</a>
+        </div>
+        <div>MIT</div> <br>
+      </div>
+
+      <!-- Organizer Card 4 -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://timudk.github.io/assets/me_rounded.jpeg" alt="Tim Dockhorn">
+        </div>
+        <div>
+          <a href="https://timudk.github.io/">Tim Dockhorn</a>
+        </div>
+        <div>Black Forest Labs</div> <br>
+      </div>
+
+      <!-- Organizer Card 5 -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://shuangli59.github.io/files/experience/shuangli-photo.JPG" alt="Shuang Li">
+        </div>
+        <div>
+          <a href="https://shuangli59.github.io/">Shuang Li</a>
+        </div>
+        <div>Stanford University</div> <br>
+      </div>
+
+      <!-- Speaker Card 8: Arash Vahdat -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="http://latentspace.cc/wp-content/uploads/2019/03/IMG_0230-10.jpg" alt="Arash Vahdat">
+        </div>
+        <div><a href="http://latentspace.cc/">Arash Vahdat</a></div>
+        <div>NVIDIA</div> <br>
+      </div>
+
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://people.csail.mit.edu/kaiming/img/kmh2024fall.jpg" alt="Kaiming He">
+        </div>
+        <div><a href="https://people.csail.mit.edu/kaiming/">Kaiming He</a></div>
+        <div>MIT</div> <br>
+      </div>
+    </div>
+    </div>
+  </section>
+</body>
+</html>
