@@ -101,7 +101,7 @@
     /* Speakers Grid */
     .speakers {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 20px; /* Adjust spacing as needed */
       justify-items: center;
     }
@@ -144,6 +144,9 @@
       text-align: center;
       padding: 1em 0;
     }
+    .schedule-table {
+      margin: 0 auto;        /* 左右自动外边距 → 水平居中 */
+    }
   </style>
 </head>
 <body>
@@ -153,6 +156,7 @@
       <h1>Visual Generative Modeling: What’s After Diffusion?</h1>
       <h2>CVPR 2025 Workshop</h2>
       <h2>06/12/2025 9:00 am - 5:00 pm</h2>
+      <h2>Room 103 A</h2>
     </div>
   </header>
   
@@ -187,6 +191,7 @@
 <section id="schedule" class="section">
   <div class="container">
     <h2>Schedule</h2>
+
     <table class="schedule-table" border="1" cellspacing="0" cellpadding="8">
       <thead>
         <tr>
@@ -199,7 +204,7 @@
       <tbody>
         <tr>
           <td>9:00 – 9:15</td>
-          <td><strong>Welcome & Opening Remarks</strong></td>
+          <td><strong>Welcome &amp; Opening Remarks</strong></td>
           <td>—</td>
           <td>—</td>
         </tr>
@@ -239,6 +244,8 @@
           <td>Keynote Talk</td>
           <td>Robin Rombach</td>
           <td>Black Forest Labs</td>
+        </tr>
+
 
         <tr>
           <td>12:15 – 13:30</td>
@@ -280,10 +287,8 @@
           <td>Keynote Talk</td>
           <td>Liang-Chieh Chen</td>
           <td>Amazon FAR</td>
-        </tr>
-      </tbody>
+        </tbody>
     </table>
-    <p>Additional details and spotlight speakers will be updated later.</p>
   </div>
 </section>
 
@@ -332,6 +337,22 @@
         </div>
         <div><a href="https://billf.mit.edu/">Bill Freeman</a></div>
         <div>MIT</div> <br>
+      </div>
+      <!-- Speaker Card 5:  Freeman -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://jiataogu.me/images/teampic/jiatao.jpg" alt="">
+        </div>
+        <div><a href="https://jiataogu.me/">Jiatao Gu</a></div>
+        <div>Apple / UPenn</div> <br>
+      </div>
+      <!-- Speaker Card 5:  Jiaming Song -->
+      <div class="instructor">
+        <div class="instructorphoto">
+          <img src="https://cdn.theorg.com/c63b9d5d-3616-4fdf-8160-a23fd5f5c0af_thumb.jpg" alt="">
+        </div>
+        <div><a href="https://tsong.me/">Jiaming Song</a></div>
+        <div>Luma AI</div> <br>
       </div>
       <!-- Speaker Card 6: Varun Jampani -->
       <div class="instructor">
