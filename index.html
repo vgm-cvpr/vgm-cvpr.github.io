@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=1200, initial-scale=1">
   <title>Visual Generative Modeling: What’s After Diffusion? | CVPR 2025 Workshop</title>
   <style>
       :root {
@@ -221,27 +220,6 @@
     }
     table.schedule tbody tr:nth-child(even) { background: #fafafa; }
     table.schedule td[colspan] { text-align: center; font-weight: 600; }
-
-@media (max-width: 640px) {          /* iPhone-14 纵向宽度≈430px */
-  .speakers,
-  .organizers {
-    display: flex;                  /* 保持卡片宽度不变 */
-    flex-wrap: nowrap;              /* 不换行，横向排 */
-    overflow-x: auto;               /* 出现滚动条 / 触摸滑动 */
-    gap: 1rem;                      /* 卡片间隔 */
-    padding-bottom: 1rem;           /* 给滚动条留空间 */
-  }
-  .card {
-    min-width: 160px;               /* 卡片最小宽度，与桌面视觉一致 */
-    flex-shrink: 0;                 /* 禁止被压缩 */
-  }
-}
-
-/* ② Schedule 表格横向滑动 */
-.schedule-wrapper {                 /* 用一个包裹元素更干净 */
-  overflow-x: auto;                 /* 屏幕窄时可左右拖动 */
-}
-
   </style>
 </head>
 <body>
