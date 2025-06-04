@@ -128,11 +128,14 @@
       gap: 1.5rem;
     }
 
-    .organizers {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 0rem; /* Adjust spacing as needed */
-    }
+    .organizers{
+  display:grid;
+  /* 自动填充，每列最小 140px，多余空间平均分 */
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;                 /* 列间距好看些 */
+  justify-items:center;      /* 卡片水平置中 */
+}
+
     
     /* ---- Cards grid ---- */
     .grid {
@@ -169,13 +172,12 @@
       object-fit: cover; /* Ensures the image covers the entire area without distortion */
       margin-bottom: 5px;
     }
-    .instructor {
-      display: inline-block;
-      width: 140px;
-      text-align: center;
-/*      margin-right: 20px;*/
-    }
 
+.instructor{
+  width:100%;                
+  max-width:140px;
+  text-align: center;
+}
     .instructor a {
       color: #0077cc;
       text-decoration: none;
