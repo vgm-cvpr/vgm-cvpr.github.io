@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Visual Generative Modeling: What’s After Diffusion? | CVPR 2025 Workshop</title>
   <style>
+      :root {
+      --primary: #482ff7;
+      --primary-light: #6d5efc;
+      --bg: #f8f9fb;
+      --text: #1e1e1e;
+      --muted: #6b7280;
+      --radius: 0.75rem;
+    }
     /* Base styles */
     body {
       font-family: Arial, sans-serif;
@@ -35,6 +43,26 @@
       font-size: 3rem; /* Adjust this value as needed */
     }
 
+    /* ---- Navbar ---- */
+    nav {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.75rem 1rem;
+    }
+    .nav-inner a { font-weight: 600; color: var(--text); }
+    .nav-inner a.active { color: var(--primary); }
+
     /* The overlay */
     header::before {
       content: "";
@@ -53,10 +81,6 @@
     header .container {
       position: relative;
       z-index: 1;
-    }
-    nav {
-      background: #999;
-      padding: 1em 0;
     }
     nav ul {
       list-style: none;
@@ -91,7 +115,7 @@
     /* Section Styles */
     .section {
       padding: 2em 0;
-      background: #fff;
+      background: #f8f9fb;
       margin: 1em 0;
     }
     .section h2 {
@@ -102,24 +126,47 @@
     .speakers {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 20px; /* Adjust spacing as needed */
-      justify-items: center;
+      gap: 2rem;
     }
+
     .organizers {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 20px; /* Adjust spacing as needed */
       justify-items: center;
     }
-    .speaker-card {
-      background: #f9f9f9;
-      padding: 1em;
-      border: 1px solid #ddd;
-      text-align: center;
+    
+    /* ---- Cards grid ---- */
+    .grid {
+      display: grid;
+      gap: 1.75rem;
     }
+    @media (min-width: 600px){ .grid { grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); } }
+
+    .card {
+      background:#fff;
+      border-radius:1rem;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+      padding:1.25rem 0.25rem;
+      text-align:center;
+      transition:transform .3s ease;
+    }
+    .card:hover{ transform:translateY(-4px); }
+
+    .card img{
+      width:120px; height:120px;
+      border-radius:50%;
+      object-fit:cover;
+      margin-bottom:0.5rem;
+    }
+    .card h3{ margin:0 0 .25rem; font-size:1.0rem; }
+    .card span{ font-size:.9rem; color:var(--text-light); }
+    .card a{ color:var(--primary); text-decoration:none; }
+
+
     .instructorphoto img {
-      width: 150px;
-      height: 150px; /* Ensure the height matches the width */
+      width: 120px;
+      height: 120px; /* Ensure the height matches the width */
       border-radius: 50%; /* Makes the image circular */
       object-fit: cover; /* Ensures the image covers the entire area without distortion */
       margin-bottom: 10px;
@@ -130,6 +177,11 @@
       text-align: center;
 /*      margin-right: 20px;*/
     }
+
+    .instructor a {
+      color: #0077cc;
+      text-decoration: none;
+    }
     .speaker-card h3 {
       margin-top: 0;
     }
@@ -137,6 +189,7 @@
       color: #0077cc;
       text-decoration: none;
     }
+
     /* Footer */
     .footer {
       background: #333;
@@ -144,9 +197,51 @@
       text-align: center;
       padding: 1em 0;
     }
-    .schedule-table {
-      margin: 0 auto;        /* 左右自动外边距 → 水平居中 */
+
+    /* ---- Schedule ---- */
+    .schedule-wrapper { overflow-x: auto; }
+    table.schedule {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 700px;
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     }
+    table.schedule th,
+    table.schedule td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    table.schedule thead {
+      background: var(--primary);
+      color: #fff;
+    }
+    table.schedule tbody tr:nth-child(even) { background: #fafafa; }
+    table.schedule td[colspan] { text-align: center; font-weight: 600; }
+
+@media (max-width: 640px) {          /* iPhone-14 纵向宽度≈430px */
+  .speakers,
+  .organizers {
+    display: flex;                  /* 保持卡片宽度不变 */
+    flex-wrap: nowrap;              /* 不换行，横向排 */
+    overflow-x: auto;               /* 出现滚动条 / 触摸滑动 */
+    gap: 1rem;                      /* 卡片间隔 */
+    padding-bottom: 1rem;           /* 给滚动条留空间 */
+  }
+  .card {
+    min-width: 160px;               /* 卡片最小宽度，与桌面视觉一致 */
+    flex-shrink: 0;                 /* 禁止被压缩 */
+  }
+}
+
+/* ② Schedule 表格横向滑动 */
+.schedule-wrapper {                 /* 用一个包裹元素更干净 */
+  overflow-x: auto;                 /* 屏幕窄时可左右拖动 */
+}
+
   </style>
 </head>
 <body>
@@ -162,13 +257,12 @@
   
   <!-- Navigation -->
   <nav>
-    <div class="container">
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#schedule">Schedule</a></li>
-        <li><a href="#speakers">Speakers</a></li>
-        <li><a href="#organizers">Organizers</a></li>
-      </ul>
+    <div class="nav-inner">
+      <a href="#about">About</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#speakers">Speakers</a>
+      <a href="#organizers">Organizers</a>
+      <a href="#top">Top ↑</a>
     </div>
   </nav>
   
@@ -181,222 +275,122 @@
       </p>
       <p>
         This year, our Visual Generative Modeling workshop at CVPR aims to explore what lies beyond diffusion models in visual generative modeling.
-        We will discuss novel insights, alternative approaches, and new possibilities in modeling and generating visual data. Join us for a full-day event featuring keynote talks from top universities and industrial labs -- all designed to ignite innovative ideas and novel research in visual generative modeling.
+        We will discuss novel insights, alternative approaches, and new possibilities in modeling and generating visual data. Join us for a full-day event featuring keynote talks from both academia and industry -- all designed to ignite innovative ideas and novel research in visual generative modeling.
       </p>
     </div>
   </section>
   
   <!-- Program Section -->
 <!-- Schedule Section -->
+
 <section id="schedule" class="section">
   <div class="container">
     <h2>Schedule</h2>
-
-    <table class="schedule-table" border="1" cellspacing="0" cellpadding="8">
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Session Details</th>
-          <th>Speaker</th>
-          <th>Affiliation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>9:00 – 9:15</td>
-          <td><strong>Welcome &amp; Opening Remarks</strong></td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
-
-        <tr>
-          <td>9:15 – 9:45</td>
-          <td>Keynote Talk</td>
-          <td>Bill Freeman</td>
-          <td>MIT</td>
-        </tr>
-        <tr>
-          <td>9:45 – 10:15</td>
-          <td>Keynote Talk</td>
-          <td>Jiajun Wu</td>
-          <td>Stanford University</td>
-        </tr>
-        <tr>
-          <td>10:15 – 10:45</td>
-          <td>Keynote Talk</td>
-          <td>Jun-Yan Zhu</td>
-          <td>CMU</td>
-        </tr>
-        <tr>
-          <td>10:45 – 11:15</td>
-          <td>Keynote Talk</td>
-          <td>Phillip Isola</td>
-          <td>MIT</td>
-        </tr>
-        <tr>
-          <td>11:15 – 11:45</td>
-          <td>Keynote Talk</td>
-          <td>Kaiming He</td>
-          <td>MIT</td>
-        </tr>
-        <tr>
-          <td>11:45 – 12:15</td>
-          <td>Keynote Talk</td>
-          <td>Robin Rombach</td>
-          <td>Black Forest Labs</td>
-        </tr>
-
-
-        <tr>
-          <td>12:15 – 13:30</td>
-          <td colspan="3" align="center"><strong>Lunch Break</strong></td>
-        </tr>
-
-        <tr>
-          <td>14:00 – 14:30</td>
-          <td>Keynote Talk</td>
-          <td>Jiaming Song</td>
-          <td>Luma AI</td>
-        </tr>
-        <tr>
-          <td>14:30 – 15:00</td>
-          <td>Keynote Talk</td>
-          <td>Jiatao Gu</td>
-          <td>Apple / UPenn</td>
-        </tr>
-        <tr>
-          <td>15:00 – 15:30</td>
-          <td>Keynote Talk</td>
-          <td>Varun Jampani</td>
-          <td>Stability AI</td>
-        </tr>
-        <tr>
-          <td>15:30 – 16:00</td>
-          <td>Keynote Talk</td>
-          <td>Arash Vahdat</td>
-          <td>NVIDIA</td>
-        </tr>
-        <tr>
-          <td>16:00 – 16:30</td>
-          <td>Keynote Talk</td>
-          <td>Ricky T. Q. Chen</td>
-          <td>FAIR</td>
-        </tr>
-        <tr>
-          <td>16:30 – 17:00</td>
-          <td>Keynote Talk</td>
-          <td>Liang-Chieh Chen</td>
-          <td>Amazon FAR</td>
+    <div class="schedule-wrapper">
+      <table class="schedule">
+        <thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Affiliation</th></tr></thead>
+        <tbody>
+          <tr><td>09:00–09:15</td><td>Welcome & Opening Remarks</td><td>—</td><td>—</td></tr>
+          <tr><td>09:15–09:45</td><td>Keynote</td><td>Bill Freeman</td><td>MIT</td></tr>
+          <tr><td>09:45–10:15</td><td>Keynote</td><td>Jiajun Wu</td><td>Stanford</td></tr>
+          <tr><td>10:15–10:45</td><td>Keynote</td><td>Jun‑Yan Zhu</td><td>CMU</td></tr>
+          <tr><td>10:45–11:15</td><td>Keynote</td><td>Phillip Isola</td><td>MIT</td></tr>
+          <tr><td>11:15–11:45</td><td>Keynote</td><td>Kaiming He</td><td>MIT</td></tr>
+          <tr><td>11:45–12:15</td><td>Keynote</td><td>Robin Rombach</td><td>Black Forest Labs</td></tr>
+          <tr><td colspan="4"><strong>Lunch Break 12:15–14:00</strong></td></tr>
+          <tr><td>14:00–14:30</td><td>Keynote</td><td>Jiaming Song</td><td>Luma AI</td></tr>
+          <tr><td>14:30–15:00</td><td>Keynote</td><td>Jiatao Gu</td><td>Apple/UPenn</td></tr>
+          <tr><td>15:00–15:30</td><td>Keynote</td><td>Varun Jampani</td><td>Stability AI</td></tr>
+          <tr><td>15:30–16:00</td><td>Keynote</td><td>Arash Vahdat</td><td>NVIDIA</td></tr>
+          <tr><td>16:00–16:30</td><td>Keynote</td><td>Ricky T. Q. Chen</td><td>FAIR</td></tr>
+          <tr><td>16:30–17:00</td><td>Keynote</td><td>Liang‑Chieh Chen</td><td>Amazon FAR</td></tr>
         </tbody>
-    </table>
-  </div>
-</section>
-
-  
-  <!-- Speakers Section -->
-  <section id="speakers" class="section">
-  <div class="container">
-    <h2>Speakers</h2>
-    <div class="speakers">
-      <!-- Speaker Card 1 -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="https://www.cs.cmu.edu/~junyanz/imgs/portrait3_lr.jpg" alt="Jun-Yan Zhu">
-        </div>
-        <div><a href="https://www.cs.cmu.edu/~junyanz/">Jun-Yan Zhu</a></div>
-        <div>CMU</div> <br>
-      </div>
-      <!-- Speaker Card 2 -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="https://jiajunwu.com/images/Jiajun_Wu.jpg" alt="Jiajun Wu">
-        </div>
-        <div><a href="https://jiajunwu.com">Jiajun Wu</a></div>
-        <div>Stanford University</div> <br>
-      </div>
-      <!-- Speaker Card 3: Kaiming He -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="https://people.csail.mit.edu/kaiming/img/kmh2024fall.jpg" alt="Kaiming He">
-        </div>
-        <div><a href="https://people.csail.mit.edu/kaiming/">Kaiming He</a></div>
-        <div>MIT</div> <br>
-      </div>
-      <!-- Speaker Card 4: Phillip Isola -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="http://web.mit.edu/phillipi/www/images/photo_of_me_korea.jpeg" alt="Phillip Isola">
-        </div>
-        <div><a href="https://web.mit.edu/phillipi/">Phillip Isola</a></div>
-        <div>MIT</div> <br>
-      </div>
-      <!-- Speaker Card 5: Bill Freeman -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="https://billf.mit.edu/files/2014/04/WilliamFreeman_332x332.jpg" alt="Bill Freeman">
-        </div>
-        <div><a href="https://billf.mit.edu/">Bill Freeman</a></div>
-        <div>MIT</div> <br>
-      </div>
-      <!-- Speaker Card 5:  Freeman -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="https://jiataogu.me/images/teampic/jiatao.jpg" alt="">
-        </div>
-        <div><a href="https://jiataogu.me/">Jiatao Gu</a></div>
-        <div>Apple / UPenn</div> <br>
-      </div>
-      <!-- Speaker Card 5:  Jiaming Song -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="https://cdn.theorg.com/c63b9d5d-3616-4fdf-8160-a23fd5f5c0af_thumb.jpg" alt="">
-        </div>
-        <div><a href="https://tsong.me/">Jiaming Song</a></div>
-        <div>Luma AI</div> <br>
-      </div>
-      <!-- Speaker Card 6: Varun Jampani -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="https://varunjampani.github.io/images/profile_pic.jpeg" alt="Varun Jampani">
-        </div>
-        <div><a href="https://varunjampani.github.io/">Varun Jampani</a></div>
-        <div>Stability AI</div> <br>
-      </div>
-      <!-- Speaker Card 7: Robin Rombach -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=ygdQhrIAAAAJ&citpid=1" alt="Robin Rombach">
-        </div>
-        <div><a href="https://scholar.google.com/citations?user=ygdQhrIAAAAJ&hl=en/">Robin Rombach</a></div>
-        <div>Black Forest Labs</div> <br>
-      </div>
-      <!-- Speaker Card 8: Arash Vahdat -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="arash.jpg" alt="Arash Vahdat">
-        </div>
-        <div><a href="http://latentspace.cc/">Arash Vahdat</a></div>
-        <div>NVIDIA</div> <br>
-      </div>
-      <!-- Speaker Card 9: Ricky T. Q. Chen -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="https://rtqichen.github.io/headshot.jpg" alt="Ricky T. Q. Chen">
-        </div>
-        <div><a href="https://rtqichen.github.io/">Ricky T. Q. Chen</a></div>
-        <div>FAIR</div> <br>
-      </div>
-      <!-- Speaker Card 10: Liang-Chieh Chen -->
-      <div class="instructor">
-        <div class="instructorphoto">
-          <img src="jay.jpg" alt="Liang-Chieh Chen">
-        </div>
-        <div><a href="http://liangchiehchen.com/">Liang-Chieh Chen</a></div>
-        <div>Amazon FAR</div> <br>
+      </table>
       </div>
     </div>
-  </div>
-</section>
+      </div>
+  </section>
+
+
+  
+  <section id="speakers" class="section">
+    <div class="container">
+      <h2>Invited Speakers</h2>
+      <div class="speakers">
+        <div class="card">
+          <img src="https://www.cs.cmu.edu/~junyanz/imgs/portrait3_lr.jpg" alt="Jun‑Yan Zhu">
+          <h3><a href="https://www.cs.cmu.edu/~junyanz/">Jun‑Yan Zhu</a></h3>
+          <span>CMU</span>
+        </div>
+
+        <div class="card">
+          <img src="https://jiajunwu.com/images/Jiajun_Wu.jpg" alt="Jiajun Wu">
+          <h3><a href="https://jiajunwu.com">Jiajun Wu</a></h3>
+          <span>Stanford University</span>
+        </div>
+
+        <div class="card">
+          <img src="https://people.csail.mit.edu/kaiming/img/kmh2024fall.jpg" alt="Kaiming He">
+          <h3><a href="https://people.csail.mit.edu/kaiming/">Kaiming He</a></h3>
+          <span>MIT</span>
+        </div>
+
+        <div class="card">
+          <img src="http://web.mit.edu/phillipi/www/images/photo_of_me_korea.jpeg" alt="Phillip Isola">
+          <h3><a href="https://web.mit.edu/phillipi/">Phillip Isola</a></h3>
+          <span>MIT</span>
+        </div>
+
+        <div class="card">
+          <img src="https://billf.mit.edu/files/2014/04/WilliamFreeman_332x332.jpg" alt="Bill Freeman">
+          <h3><a href="https://billf.mit.edu/">Bill Freeman</a></h3>
+          <span>MIT</span>
+        </div>
+
+        <div class="card">
+          <img src="https://jiataogu.me/images/teampic/jiatao.jpg" alt="Jiatao Gu">
+          <h3><a href="https://jiataogu.me/">Jiatao Gu</a></h3>
+          <span>Apple / UPenn</span>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.theorg.com/c63b9d5d-3616-4fdf-8160-a23fd5f5c0af_thumb.jpg" alt="Jiaming Song">
+          <h3><a href="https://tsong.me/">Jiaming Song</a></h3>
+          <span>Luma AI</span>
+        </div>
+
+        <div class="card">
+          <img src="https://varunjampani.github.io/images/profile_pic.jpeg" alt="Varun Jampani">
+          <h3><a href="https://varunjampani.github.io/">Varun Jampani</a></h3>
+          <span>Stability AI</span>
+        </div>
+
+        <div class="card">
+          <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=ygdQhrIAAAAJ&citpid=1" alt="Robin Rombach">
+          <h3><a href="https://scholar.google.com/citations?user=ygdQhrIAAAAJ&hl=en/">Robin Rombach</a></h3>
+          <span>Black Forest Labs</span>
+        </div>
+
+        <div class="card">
+          <img src="arash.jpg" alt="Arash Vahdat">
+          <h3><a href="http://latentspace.cc/">Arash Vahdat</a></h3>
+          <span>NVIDIA</span>
+        </div>
+
+        <div class="card">
+          <img src="https://rtqichen.github.io/headshot.jpg" alt="Ricky T. Q. Chen">
+          <h3><a href="https://rtqichen.github.io/">Ricky T. Q. Chen</a></h3>
+          <span>FAIR</span>
+        </div>
+
+        <div class="card">
+          <img src="jay.jpg" alt="Liang‑Chieh Chen">
+          <h3><a href="http://liangchiehchen.com/">Liang‑Chieh Chen</a></h3>
+          <span>Amazon FAR</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   
   <!-- Organizers Section -->
