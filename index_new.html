@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visual Generative Modeling – CVPR 2025 Workshop</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #482ff7;
+      --primary-light: #6d5efc;
+      --bg: #f8f9fb;
+      --text: #1e1e1e;
+      --muted: #6b7280;
+      --radius: 0.75rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: 0.15s ease-in-out;
+    }
+    a:hover { opacity: 0.75; }
+
+    /* ---- Header & Hero ---- */
+    header {
+      position: relative;
+      min-height: 70vh;
+      background: url("hero-image.jpg") center / cover fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+    header::after {  /* overlay */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      padding: 2rem;
+      max-width: 800px;
+    }
+    .hero-content h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .hero-content p {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 2.5rem;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      font-weight: 500;
+    }
+    .hero-meta span { background: var(--primary); padding: 0.35rem 0.75rem; border-radius: var(--radius); }
+
+    /* ---- Navbar ---- */
+    nav {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.75rem 1rem;
+    }
+    .nav-inner a { font-weight: 600; color: var(--text); }
+    .nav-inner a.active { color: var(--primary); }
+
+    /* ---- Utility ---- */
+    .container { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1rem; }
+    .section-title { text-align: center; font-size: 2rem; font-weight: 600; margin-bottom: 2rem; }
+
+    /* ---- About ---- */
+    #about p { max-width: 800px; margin: 0 auto 1.25rem; color: var(--muted); }
+
+    /* ---- Schedule ---- */
+    .schedule-wrapper { overflow-x: auto; }
+    table.schedule {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 700px;
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    table.schedule th,
+    table.schedule td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    table.schedule thead {
+      background: var(--primary);
+      color: #fff;
+    }
+    table.schedule tbody tr:nth-child(even) { background: #fafafa; }
+    table.schedule td[colspan] { text-align: center; font-weight: 600; }
+
+    /* ---- Cards grid ---- */
+    .grid {
+      display: grid;
+      gap: 1.75rem;
+    }
+    @media (min-width: 600px){ .grid { grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); } }
+
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      text-align: center;
+      padding: 1.25rem 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.15s ease;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 0.75rem;
+    }
+    .card h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+    .card span { font-size: 0.85rem; color: var(--muted); }
+
+    /* ---- Footer ---- */
+    footer {
+      background: #1f2937;
+      color: #d1d5db;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header id="top">
+    <div class="hero-content">
+      <h1>Visual Generative Modeling:<br>What’s After Diffusion?</h1>
+      <p>CVPR 2025 Workshop</p>
+      <div class="hero-meta">
+        <span>June 12 | 9 am – 5 pm</span>
+        <span>Room 103 A</span>
+        <span>Denver, CO</span>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#about">About</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#speakers">Speakers</a>
+      <a href="#organizers">Organizers</a>
+      <a href="#top">Top ↑</a>
+    </div>
+  </nav>
+
+  <section id="about" class="container">
+    <h2 class="section-title">About the Workshop</h2>
+    <p>Diffusion models have rapidly become the go‑to method for visual generation—yet they still face challenges such as slow sampling, limited user control, and difficulties handling long‑range temporal dependencies. This workshop brings together researchers pushing beyond diffusion to explore faster, more controllable, and more expressive generative paradigms for images, video, and 3‑D.</p>
+    <p>Join us for a full‑day program of keynote talks and discussions by leading academics and industry practitioners aimed at catalysing the next wave of breakthroughs in visual generative modeling.</p>
+  </section>
+
+  <section id="schedule" class="container">
+    <h2 class="section-title">Schedule</h2>
+    <div class="schedule-wrapper">
+      <table class="schedule">
+        <thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Affiliation</th></tr></thead>
+        <tbody>
+          <tr><td>09:00–09:15</td><td><strong>Welcome & Opening</strong></td><td>—</td><td>—</td></tr>
+          <tr><td>09:15–09:45</td><td>Keynote</td><td>Bill Freeman</td><td>MIT</td></tr>
+          <tr><td>09:45–10:15</td><td>Keynote</td><td>Jiajun Wu</td><td>Stanford</td></tr>
+          <tr><td>10:15–10:45</td><td>Keynote</td><td>Jun‑Yan Zhu</td><td>CMU</td></tr>
+          <tr><td>10:45–11:15</td><td>Keynote</td><td>Phillip Isola</td><td>MIT</td></tr>
+          <tr><td>11:15–11:45</td><td>Keynote</td><td>Kaiming He</td><td>MIT</td></tr>
+          <tr><td>11:45–12:15</td><td>Keynote</td><td>Robin Rombach</td><td>Black Forest Labs</td></tr>
+          <tr><td colspan="4"><strong>Lunch Break 12:15–13:30</strong></td></tr>
+          <tr><td>14:00–14:30</td><td>Keynote</td><td>Jiaming Song</td><td>Luma AI</td></tr>
+          <tr><td>14:30–15:00</td><td>Keynote</td><td>Jiatao Gu</td><td>Apple/UPenn</td></tr>
+          <tr><td>15:00–15:30</td><td>Keynote</td><td>Varun Jampani</td><td>Stability AI</td></tr>
+          <tr><td>15:30–16:00</td><td>Keynote</td><td>Arash Vahdat</td><td>NVIDIA</td></tr>
+          <tr><td>16:00–16:30</td><td>Keynote</td><td>Ricky T. Q. Chen</td><td>FAIR</td></tr>
+          <tr><td>16:30–17:00</td><td>Keynote</td><td>Liang‑Chieh Chen</td><td>Amazon FAR</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="speakers" class="container">
+    <h2 class="section-title">Invited Speakers</h2>
+    <div class="grid">
+      <!-- speaker cards (sample) -->
+      <div class="card"><img src="https://www.cs.cmu.edu/~junyanz/imgs/portrait3_lr.jpg" alt="Jun-Yan Zhu"><h3><a href="https://www.cs.cmu.edu/~junyanz/">Jun‑Yan Zhu</a></h3><span>CMU</span></div>
+      <div class="card"><img src="https://jiajunwu.com/images/Jiajun_Wu.jpg" alt="Jiajun Wu"><h3><a href="https://jiajunwu.com">Jiajun Wu</a></h3><span>Stanford</span></div>
+      <div class="card"><img src="https://people.csail.mit.edu/kaiming/img/kmh2024fall.jpg" alt="Kaiming He"><h3><a href="https://people.csail.mit.edu/kaiming/">Kaiming He</a></h3><span>MIT</span></div>
+      <div class="card"><img src="http://web.mit.edu/phillipi/www/images/photo_of_me_korea.jpeg" alt="Phillip Isola"><h3><a href="https://web.mit.edu/phillipi/">Phillip Isola</a></h3><span>MIT</span></div>
+      <!-- add others ... -->
+    </div>
+  </section>
+
+  <section id="organizers" class="container">
+    <h2 class="section-title">Organizers</h2>
+    <div class="grid">
+      <!-- organizer cards (sample) -->
+      <div class="card"><img src="tianhong.jpg" alt="Tianhong Li"><h3><a href="https://www.tianhongli.me/">Tianhong Li</a></h3><span>MIT</span></div>
+      <div class="card"><img src="https://yilun-xu.com/assets/img/aaron_sq.png" alt="Yilun Xu"><h3><a href="https://yilun-xu.com/">Yilun Xu</a></h3><span>NVIDIA</span></div>
+      <!-- add others ... -->
+    </div>
+  </section>
+
+  <footer>
+    © 2025 CVPR Workshop • Visual Generative Modeling – Made with ❤️ by the Organizers
+  </footer>
+</body>
+</html>
